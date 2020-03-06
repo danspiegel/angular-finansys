@@ -40,6 +40,16 @@ export class CategoryFormComponent implements OnInit {
     this.setPageTitle();
   }
 
+  submitForm() {
+    this.submittingForm = true;
+
+    if (this.currentAction == "new") {
+      this.createCategory();
+    } else {
+      this.updateCategory();
+    }
+  }
+
   // Private Methods
 
   private setCurrentAction() {
@@ -77,7 +87,49 @@ export class CategoryFormComponent implements OnInit {
       this.pageTitle = "Cadastro de Nova Categoria";
     } else {
       const categoryName = this.category.name || "";
-      this.pageTitle = "Editando a Categoria " + categoryName;
+      this.pageTitle = "Editando a Categoria: " + categoryName;
+    }
+  }
+
+  private createCategory() {
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+
+    this.categoryService.create(category)
+      .subscribe(
+        category => this.actionForSuccess(category),
+        error => this.actionForError(error)
+      )
+  }
+
+  private updateCategory() {
+    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+
+    this.categoryService.update(category)
+      .subscribe(
+        category => this.actionForSuccess(category),
+        error => this.actionForError(error)
+      )
+
+  }
+
+  private actionForSuccess(category: Category) {
+    toastr.success("Solicitação processada com sucesso!");
+
+    // redirect/reload do componente da página
+    this.router.navigateByUrl("categories", {skipLocationChange: true}).then(
+      () => this.router.navigate(["categories", category.id, "edit"])
+    )
+  }
+
+  private actionForError(error) {
+    toastr.error("Ocorreu um erro ao processar sua solicitação.");
+
+    this.submittingForm = false;
+
+    if (error.status === 422) {
+      this.serverErrorMessages = JSON.parse(error._body).errors;
+    } else {
+      this.serverErrorMessages = ["Falha na comunicação com o servidor. Por favor, teste mais tarde."];
     }
   }
 
