@@ -129,7 +129,7 @@ export class CategoryFormComponent implements OnInit {
     if (error.status === 422) {
       this.serverErrorMessages = JSON.parse(error._body).errors;
     } else {
-      this.serverErrorMessages = ["Falha na comunicação com o servidor. Por favor, teste mais tarde."];
+      this.serverErrorMessages = ["Falha na comunicação com o servidor. Por favor tente novamente mais tarde."];
     }
   }
 
