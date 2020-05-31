@@ -3,12 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BaseResourceModel } from '../../models/base-resource.model';
 import { BaseResourceService } from '../../services/base-resource.service';
 
-@Component({
-  selector: 'app-entry-list',
-  templateUrl: './entry-list.component.html',
-  styleUrls: ['./entry-list.component.css']
-})
-export class BaseResourceListComponent<T extends BaseResourceModel> implements OnInit {
+export abstract class BaseResourceListComponent<T extends BaseResourceModel> implements OnInit {
 
   resources: T[] = [];
 
@@ -27,7 +22,7 @@ export class BaseResourceListComponent<T extends BaseResourceModel> implements O
     if (meuDelete) {
       this.resourceService.delete(resource.id).subscribe(
         () => this.resources = this.resources.filter(element => element != resource),
-        () => alert('Erro ao tentar excluir!')
+        () => alert('Erro ao tentar excluir este item!')
       );
     }
   }
