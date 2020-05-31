@@ -34,8 +34,8 @@ export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
   }
 
   protected editionPageTitle(): string {
-    const categoryName = this.resource.name || "";
-    return "Edição da Categoria " + categoryName;
+    const resourceName = this.resource.name || "";
+    return "Edição da Categoria " + resourceName;
   }
 
 }
