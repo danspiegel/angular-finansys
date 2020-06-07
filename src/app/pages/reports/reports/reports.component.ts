@@ -98,7 +98,7 @@ export class ReportsComponent implements OnInit {
       // Se encontrar lançamentos, então soma os valores do lançamento e adicionar no Chart
       if (filteredEntries.length > 0) {
         const totalAmount = filteredEntries.reduce(
-          (total, entry) => total + currencyFormatter.unformat(entry.amount, { code: 'BRL' })
+          (total, entry) => total + currencyFormatter.unformat(entry.amount, { code: 'BRL' }), 0
         )
 
         chartData.push({
