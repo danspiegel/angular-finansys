@@ -15,7 +15,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         ];
 
         const entries: Entry[] = [
-            { id: 1, name: 'Gás de Cozinha', categoryId: categories[0].id, category: categories[0], paid: true, date: '14/10/2018', amount: '70,80', type: 'expense', description: 'Qualquer descrição para essa despesa' } as Entry
+            { id: 1, name: 'Gás de Cozinha', categoryId: categories[0].id, category: categories[0], paid: true, date: '14/10/2018', amount: '70,80', type: 'expense', description: 'Qualquer descrição para essa despesa' } as Entry,
+            { id: 1, name: 'Salário', categoryId: categories[3].id, category: categories[3], paid: true, date: '30/10/2018', amount: '4200,00', type: 'revenue', description: 'Qualquer descrição para essa receita' } as Entry,
+            { id: 1, name: 'Desenvolvimento', categoryId: categories[4].id, category: categories[4], paid: true, date: '18/10/2018', amount: '1045,20', type: 'revenue', description: 'Qualquer descrição para essa receita' } as Entry,
+            { id: 1, name: 'Netflix', categoryId: categories[2].id, category: categories[2], paid: true, date: '20/10/2018', amount: '49,90', type: 'expense', description: 'Qualquer descrição para essa despesa' } as Entry
         ];
 
         return { categories, entries };
