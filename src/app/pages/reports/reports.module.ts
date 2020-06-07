@@ -4,6 +4,8 @@ import { ReportsRoutingModule } from './reports-routing.module';
 
 import { ReportsComponent } from './reports/reports.component';
 
+import { ChartModule } from 'primeng/chart';
+
 
 @NgModule({
   declarations: [
@@ -11,7 +13,8 @@ import { ReportsComponent } from './reports/reports.component';
   ],
   imports: [
     SharedModule,
-    ReportsRoutingModule
+    ReportsRoutingModule,
+    ChartModule
   ]
 })
 export class ReportsModule { }
